@@ -1,16 +1,15 @@
 import React from "react";
-import affixParser from "./handler/loop";
+import AffixParser from "./handler/loop";
 import { prefix } from "./data/oneHandedSword";
 import Accordion from "./components/Accordion";
 
 function App() {
-  affixParser(prefix);
 
 
 
   return (
     <div>
-      <Accordion title="ThiccBoy"></Accordion>
+    <AffixParser affix={prefix}/>
     </div>
   );
 }

@@ -5,3 +5,26 @@
     margin: 0;
     padding: 0;
 }
+
+.align {
+    display: block;
+    float: left;
+    align-items: center;
+    justify-content: center;
+
+}
+.align-item {
+    padding: 1px;
+    padding-left: 1em;
+    padding-right: 5em;
+}
+
+.align--left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.align--right {
+    float: right;
+}
