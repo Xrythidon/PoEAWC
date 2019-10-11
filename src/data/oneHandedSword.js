@@ -21,3 +21,39 @@ export const prefix = {
 
     }
   }
+
+export const prefixTags = {
+  "% increased Physical Damage":["physical", "attack"],
+  "Adds # to # Physical Damage":["physical", "attack"],
+}
+
+export const suffixTags = {
+  "# to Strength":[],
+  "# to Dexterity":[],
+}
+
+
+export const suffix = {
+    "# to Strength": {
+      "of the Brute": { ilvl: 1, value: "+(8–12)", affixWeight: 1000 },
+      "of the Wrestler": { ilvl: 11, value: "+(13–17)", affixWeight: 1000 },
+      "of the Bear": { ilvl: 22, value: "+(18–22)", affixWeight: 1000 },
+      "of the Lion": { ilvl: 33, value: "+(23–27)", affixWeight: 1000 },
+      "of the Gorilla": { ilvl: 44, value: "+(28–32)", affixWeight: 1000 },
+      "of the Goliath": { ilvl: 55, value: "+(33–37)", affixWeight: 1000 },
+      "of the Leviathan": { ilvl: 66, value: "+(38–42)", affixWeight: 1000 },
+      "of the Titan": { ilvl: 74, value: "+(43–50)", affixWeight: 1000 },
+      "of the Gods": { ilvl: 82, value: "+(51–55)", affixWeight: 1000 },
+    }, "# to Dexterity": {
+      "of the Mongoose": { ilvl: 1, value: "+(8–12)", affixWeight: 1000 },
+      "of the Lynx": { ilvl: 11, value: "+(13–17)", affixWeight: 1000 },
+      "of the Fox": { ilvl: 22, value: "+(18–22)", affixWeight: 1000 },
+      "of the Falcon": { ilvl: 33, value: "+(23–27)", affixWeight: 1000 },
+      "of the Panther": { ilvl: 44, value: "+(28–32)", affixWeight: 1000 },
+      "of the Leopard": { ilvl: 55, value: "+(33–37)", affixWeight: 1000 },
+      "of the Jaguar": { ilvl: 66, value: "+(38–42)", affixWeight: 1000 },
+      "of the Phantom": { ilvl: 74, value: "+(43–50)", affixWeight: 1000 },
+      "of the Wind": { ilvl: 82, value: "+(51–55)", affixWeight: 1000 },
+    }
+  }
+

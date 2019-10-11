@@ -11,12 +11,24 @@
     float: left;
     align-items: center;
     justify-content: center;
-
 }
+
+
 .align-item {
-    padding: 1px;
-    padding-left: 1em;
-    padding-right: 5em;
+    padding: 1px 50px 1px 50px;
+    margin: 5px 0px 5px 0px;
+
+    &:nth-child(even){
+        padding: 1px 50px 1px 50px;
+        margin: 5px 0px 5px 0px;
+    
+        background-color: lighten($color: black, $amount: 80%);
+
+       &:hover{
+            color: white;
+       }
+    }
+
 }
 
 .align--left {
