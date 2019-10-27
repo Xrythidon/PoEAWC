@@ -35,7 +35,7 @@ function Accordion(props) {
           <p className="accordion__title">{props.title}</p>
           <p className="accordion__subtitle">{props.subTitle}</p>
           {props.tags.map(tag => (
-            <div className="accordion__spaced">
+            <div key={tag} className="accordion__spaced">
               <Chip color="primary" variant="default" label={tag} size="small"/>
             </div>
           ))}

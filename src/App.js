@@ -1,28 +1,42 @@
-import React from "react";
-import AffixParser from "./handler/loop";
+import React, {useState, useReducer} from "react";
+import AffixParser from "./handler/AffixParser";
 import { prefix, suffix, prefixTags, suffixTags } from "./data/oneHandedSword";
 import { Paper, Grid, Typography } from "@material-ui/core";
+import Affixes from "./components/Affixes";
+import AffixesContext from "./context/affixes-context"
 
 function App() {
+  const [prefixes, setPrefixes] = useState(prefix);
+  const [suffixes, setSuffixes] = useState(suffix)
+  const [pTags, setPTags] = useState(prefixTags)
+  const [sTags, setSTags] = useState(suffixTags)
+
+
 
   return (
-    <div>
+    <AffixesContext.Provider value={{prefixes,setPrefixes,suffixes,setSuffixes,pTags,sTags}}>
       <Grid 
         container
         direction="row"
         justify="center"
         alignItems="flex-start"
         spacing={8}>
-        <Grid item>
-          <Typography variant="h3" style={{padding: 10, "textAlign": "center"}}>Prefixes</Typography>
-          <Paper><AffixParser affix={prefix} tags={prefixTags}/></Paper> 
+        <Grid item xs={12}>
+          <Typography variant="h3" style={{padding: 10, "textAlign": "center"}}>Choose Affixes</Typography>
+          <Paper style={{"textAlign": "center"}}>
+            <Affixes/>
+          </Paper> 
         </Grid>
-        <Grid item>
+        <Grid item xs={6}>
+          <Typography variant="h3" style={{padding: 10, "textAlign": "center"}}>Prefixes</Typography>
+          <Paper style={{marginLeft: 100}}><AffixParser affix={prefixes} tags={pTags}/></Paper> 
+        </Grid>
+        <Grid item xs={6}>
         <Typography variant="h3" style={{padding: 10, "textAlign": "center"}}>Suffixes</Typography>
-          <Paper><AffixParser affix={suffix} tags={suffixTags}/></Paper>
+          <Paper style={{marginRight: 100}}><AffixParser affix={suffixes} tags={sTags}/></Paper>
         </Grid>
       </Grid>
-    </div>
+    </AffixesContext.Provider>
   );
 }
 

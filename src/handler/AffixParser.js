@@ -1,10 +1,23 @@
-import React from "react";
+import React, {useState, Fragment} from "react";
 import Accordion from "../components/Accordion";
+import {List, ListItem, Divider, Grid} from '@material-ui/core/';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: "flex",
+    "flex-direction" : "flex-start",
+    "justify-content" : "center",
+  },
+  second: {
+    "justify-content" : "space-between",
+  }
+}));
 
 const AffixParser = ({ affix, tags }) => {
-  let currentAffixListName = [];
-  let currentAffixListWeight = [];
-  let currentAffixListPercentages = [];
+  const classes = useStyles();
+
+  let currentAffixList = [];
   let sectionAffixWeightArray = [];
 
   let array = [];
@@ -37,41 +50,29 @@ const AffixParser = ({ affix, tags }) => {
     for (let j = 0; j < affixMod.length; j++) {
       const individualAffixWeight = affix[innerPrefix[i]][affixMod[j]]["affixWeight"];
 
-      //Call accordion here
-      // <Accordion title="potato"/>
-      console.log(innerPrefix[i]);
-      console.log(affixMod[j]);
-      console.log("affixWeight", individualAffixWeight);
-      console.log(((individualAffixWeight / totalAffixWeight) * 100).toFixed(3) + "%");
-      console.log("-----------");
+      currentAffixList.push(
+        <Fragment key={`fragment+${j}`}>
+          <ListItem className={classes.root} key={`parent+${j}`} component="div">
+            <ListItem className={classes.root} key={affixMod[j]}>{affixMod[j]}</ListItem>
+            <ListItem className={classes.root} key={individualAffixWeight}>{individualAffixWeight}</ListItem>
+            <ListItem className={classes.root} key={toPercentage(individualAffixWeight, totalAffixWeight)}> {toPercentage(individualAffixWeight, totalAffixWeight)}</ListItem>
+          </ListItem>
+          <Divider/>
+        </Fragment>
+      );
 
-      currentAffixListName.push(
-        <ul className="align-item" key={j}>
-          {affixMod[j]}
-        </ul>
-      );
-      currentAffixListWeight.push(
-        <ul className="align-item" key={j}>
-          {individualAffixWeight}
-        </ul>
-      );
-      currentAffixListPercentages.push(
-        <ul className="align-item" key={j}>
-          {toPercentage(individualAffixWeight, totalAffixWeight)}
-        </ul>
-      );
     }
 
     array.push(
-      <Accordion title={innerPrefix[i]} subTitle={toPercentage(sectionAffixWeightArray[i],totalAffixWeight)} tags={tags[innerPrefix[i]]} key={i}>
-        <div className="align">{currentAffixListName}</div>
-        <div className="align">{currentAffixListWeight}</div>
-        <div className="align align--right">{currentAffixListPercentages}</div>
-      </Accordion>
+      <Fragment key={`fragment+${i}`}>
+        <Grid>
+          <Accordion title={innerPrefix[i]} subTitle={toPercentage(sectionAffixWeightArray[i],totalAffixWeight)} tags={tags[innerPrefix[i]]} key={i}>
+            <List> {currentAffixList}</List>
+          </Accordion>
+        </Grid>
+      </Fragment>
     );
-    currentAffixListName = [];
-    currentAffixListWeight = [];
-    currentAffixListPercentages = [];
+    currentAffixList = [];
   }
 
   return <div>{array}</div>;
